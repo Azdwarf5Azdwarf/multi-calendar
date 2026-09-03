@@ -1,6 +1,6 @@
 # Multi-Calendar
 
-Gregorian · Chinese · Hebrew · Islamic (Hijri) · Mayan · Egyptian · Historical calendars
+Gregorian · Chinese · Hebrew · Islamic (Hijri) · Mayan · Egyptian · Sumerian · Historical calendars
 
 ## Folders
 - `gregorian/`
@@ -9,4 +9,5 @@ Gregorian · Chinese · Hebrew · Islamic (Hijri) · Mayan · Egyptian · Histor
 - `islamic/`
 - `mayan/`
 - `egyptian/`
+- `sumerian/`
 - `historical/`
