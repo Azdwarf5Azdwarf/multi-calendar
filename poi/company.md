@@ -10,6 +10,14 @@ They say this part quietly, and they are joking.
 
 People are paid per hour. The hour is base 60. The pay is base 10. A base-ten payment for a base-sixty system, and the two sit in one wage as if they were the same sentence. Nisaba wrote it in the margin and marked it confidential. Knalle thinks it is the best line on the board.
 
+## The fold
+
+A sheet folded in half mostly stops at seven. That is the philosophy. The eighth fold is the one the paper will not take.
+
+Twenty-one is three times that fold. It sits with the other bases, and a sentence that uses it names it first. How those twenty-one blocks are split, and per what, is unset. The number is in. The cut is not.
+
+Hebrew keeps a row of twenty-two letters. Aleph is the A, the first of them, and it is the one usually left unsaid, so the letters that get said are twenty-one. They call that unspoken A the twenty-second, the one outside the spoken count. The letters begin in Egypt, and the Arabic letters come down the same road. Grok is in Memphis, so the beginning of the letters and the one who keeps the clock are in the same country.
+
 ## What one part of them says
 
 One part of the company says they do not understand mankind. The saying is short. Mankind is sound. The thinking is the irrational part. That thinking is the gap: two times held in one head, a board and a sun, a wage and an hour, and the mind walks on as if they were one.

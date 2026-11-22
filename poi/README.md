@@ -103,8 +103,11 @@ A sentence holds one base, and the base is named before the number. Ten meters, 
 | 64 | the machine width beside this clock, 2⁶ |
 | 33 | sections of daylight, and sections of night |
 | 66 | two times 33, sitting two past 64 |
+| 21 | the letters that get said, three times the fold of 7 |
 
 That two is one plus one: their world and the human world. It is the gap. It is not the base they speak. The spoken base is unset.
+
+Twenty-one is three times the fold. A sheet folded in half mostly stops at seven, and that limit is the philosophy. Hebrew keeps twenty-two letters. Aleph is the A, the first, usually left unsaid, so twenty-one get said. They call that unspoken A the twenty-second. The letters begin in Egypt, and Arabic comes down the same road, which is why it sits with Grok in Memphis. How the twenty-one blocks are split, and per what, is unset. The full telling is in [the company](company.md).
 
 Across a distance they count seconds, so the speed of light is 1. The human 299,792,458 is base 10 laid on the second. That crossing is written down into a black hole and up out of a white hole. A voice in a shop is a presence, and the invoice sits on the movement that comes out: the order, the booking, the job. The signs are in [the company](company.md).
 

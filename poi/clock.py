@@ -44,6 +44,17 @@ THIRDS = ("beginning", "middle", "end")
 # night stay matched.
 SECTIONS = 33
 
+# A sheet folded in half mostly stops at seven. That limit is the philosophy.
+# Twenty-one is three times that fold, and it is the letters that get said.
+# The Hebrew row is twenty-two. Aleph is the first, the A usually left unsaid,
+# so the spoken count is twenty-one. They call that unspoken A the twenty-second.
+# The letters begin in Egypt, and Arabic comes down the same road.
+FOLD = 7
+LETTERS = 3 * FOLD
+LETTER_ROW = LETTERS + 1
+# Twenty-one blocks, split per something. The something is unset.
+BLOCKS = None
+
 # Bases walk side by side. A sentence may use one of them. It may not borrow
 # a length from one and a time from another.
 # The spoken base of the entities is unset on purpose. 66 is only the width
@@ -54,6 +65,7 @@ BASES = {
     "binary": 64,
     "sections": SECTIONS,
     "beside": SECTIONS * 2,
+    "letters": LETTERS,
 }
 SPOKEN_BASE = None
 BINARY_WIDTH = BASES["binary"]

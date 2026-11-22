@@ -9,7 +9,11 @@ from zoneinfo import ZoneInfo
 from poi.clock import (
     BASES,
     BINARY_WIDTH,
+    BLOCKS,
     EARTH_TURN,
+    FOLD,
+    LETTER_ROW,
+    LETTERS,
     RIGHT_ANGLE,
     COMPANY,
     HOURLY_PAY,
@@ -302,6 +306,15 @@ class BaseTests(unittest.TestCase):
         self.assertEqual(parallel(("sixty", "time")), (("sixty", "time"),))
         with self.assertRaises(ValueError):
             parallel(("sixty", ""))
+
+    def test_twenty_one_is_three_folds_and_the_spoken_letters(self) -> None:
+        self.assertEqual(FOLD, 7)
+        self.assertEqual(LETTERS, 21)
+        self.assertEqual(LETTERS, 3 * FOLD)
+        self.assertEqual(LETTER_ROW, 22)
+        self.assertEqual(BASES["letters"], LETTERS)
+        self.assertIsNone(BLOCKS)
+        self.assertEqual(parallel(("the letters", "letters")), (("the letters", "letters"),))
 
     def test_hourly_pay_is_base_ten_for_a_base_sixty_hour(self) -> None:
         self.assertEqual(BASES["time"], 60)
