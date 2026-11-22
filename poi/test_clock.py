@@ -195,6 +195,16 @@ class GapTests(unittest.TestCase):
         self.assertEqual(reading.stand, stand)
         self.assertGreater(reading.stand.altitude, 0)
 
+    def test_at_munkedal_the_sun_agrees_with_the_phone(self) -> None:
+        # Bus 860 on 22 Nov 2026, actual board: Munkedal 12:12, Uddevalla 12:44.
+        # Near 11.7° E the season's fast sun cancels the longitude, so the
+        # phone and the sun share the minute. The bus did not.
+        munkedal = (58.482, 11.678)
+        phone = datetime(2026, 11, 22, 12, 18, tzinfo=ZoneInfo("Europe/Stockholm"))
+        stand = sun_stand(phone.timestamp(), *munkedal)
+        gap = minutes_ahead(stand.sun_hours, 12 + 18 / 60)
+        self.assertAlmostEqual(gap, 1, delta=2)
+
 
 class FaceTests(unittest.TestCase):
     def _at_mean_hour(self, unix: float, hour: float) -> float:

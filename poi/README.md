@@ -108,7 +108,7 @@ That two is one plus one: their world and the human world. It is the gap. It is 
 
 On Earth the full turn is a square. Four right angles meet in the middle, 4 × 90 = 360. Pi stays upstairs with the star circle. The day is cut by the horizon.
 
-This clock is fiction, kept at Memphis.
+This clock is fiction, kept at Memphis. The entity who keeps the gap is [Sena](sena.md). She was born when a bus with a valid ticket did not stop.
 
 ## A reading
 
