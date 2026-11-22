@@ -6,11 +6,30 @@ import unittest
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
-from poi.clock import locate, minutes_ahead, month_lengths, read, sun_stand, thirds, year_covering
+from poi.clock import (
+    BASES,
+    BINARY_WIDTH,
+    EARTH_TURN,
+    RIGHT_ANGLE,
+    SECTIONS,
+    SPOKEN_BASE,
+    WORLD_GAP,
+    MixedBases,
+    day_face,
+    locate,
+    minutes_ahead,
+    month_lengths,
+    parallel,
+    read,
+    sun_stand,
+    thirds,
+    year_covering,
+)
 from poi.sun import (
     PRECESSION_YEARS_PER_DEGREE,
     SUN_DEGREES_PER_DAY,
     TROPICAL_YEAR_SECONDS,
+    day_length_hours,
     precession_degrees,
     rotation_degrees,
 )
@@ -175,6 +194,91 @@ class GapTests(unittest.TestCase):
         stand = sun_stand(unix, *STOCKHOLM)
         self.assertEqual(reading.stand, stand)
         self.assertGreater(reading.stand.altitude, 0)
+
+
+class FaceTests(unittest.TestCase):
+    def _at_mean_hour(self, unix: float, hour: float) -> float:
+        stand = sun_stand(unix, *STOCKHOLM)
+        return unix + minutes_ahead(hour, stand.mean_hours) / 60.0 * 3600.0
+
+    def test_sunrise_opens_at_33_and_sunset_is_zero(self) -> None:
+        noon = datetime(2026, 6, 21, 12, tzinfo=timezone.utc).timestamp()
+        stand = sun_stand(noon, *STOCKHOLM)
+        length_hours = day_length_hours(stand.declination, STOCKHOLM[0])
+        noon_mean = 12.0 - stand.gap_minutes / 60.0
+        sunrise = noon_mean - length_hours / 2.0
+        sunset = noon_mean + length_hours / 2.0
+        night_middle = (sunset + (24.0 - length_hours) / 2.0) % 24.0
+
+        opened = day_face(self._at_mean_hour(noon, sunrise), *STOCKHOLM)
+        closed = day_face(self._at_mean_hour(noon, sunset - 1.0 / 60.0), *STOCKHOLM)
+        deep = day_face(self._at_mean_hour(noon, night_middle), *STOCKHOLM)
+
+        self.assertEqual(opened.half, "day")
+        self.assertAlmostEqual(opened.mark, 33.0, delta=0.5)
+        self.assertEqual(opened.section, 1)
+        self.assertEqual(closed.half, "day")
+        self.assertAlmostEqual(closed.mark, 0.0, delta=0.5)
+        self.assertEqual(deep.half, "night")
+        self.assertAlmostEqual(deep.mark, -33.0, delta=1.0)
+        self.assertLess(deep.section, 0)
+
+    def test_the_reset_is_at_sunrise(self) -> None:
+        noon = datetime(2026, 3, 20, 12, tzinfo=timezone.utc).timestamp()
+        stand = sun_stand(noon, *STOCKHOLM)
+        length_hours = day_length_hours(stand.declination, STOCKHOLM[0])
+        sunrise = 12.0 - stand.gap_minutes / 60.0 - length_hours / 2.0
+        before = day_face(self._at_mean_hour(noon, sunrise - 2.0 / 60.0), *STOCKHOLM)
+        after = day_face(self._at_mean_hour(noon, sunrise + 2.0 / 60.0), *STOCKHOLM)
+        self.assertEqual(before.half, "night")
+        self.assertAlmostEqual(before.mark, 0.0, delta=0.4)
+        self.assertEqual(after.half, "day")
+        self.assertAlmostEqual(after.mark, 33.0, delta=0.4)
+
+    def test_day_and_night_keep_the_same_count_and_the_count_can_change(self) -> None:
+        noon = datetime(2026, 6, 21, 12, tzinfo=timezone.utc).timestamp()
+        ordinary = day_face(noon, *STOCKHOLM)
+        wider = day_face(noon, *STOCKHOLM, sections=40)
+        self.assertEqual(ordinary.sections, SECTIONS)
+        self.assertEqual(wider.sections, 40)
+        self.assertEqual(ordinary.half, "day")
+        self.assertGreater(ordinary.mark, 0)
+
+    def test_polar_day_stays_open_and_polar_night_stays_down(self) -> None:
+        summer = day_face(datetime(2026, 6, 21, 12, tzinfo=timezone.utc).timestamp(), 78.2232, 15.6267)
+        winter = day_face(datetime(2026, 12, 21, 12, tzinfo=timezone.utc).timestamp(), 78.2232, 15.6267)
+        self.assertEqual(summer.half, "polar_day")
+        self.assertEqual(summer.mark, 33.0)
+        self.assertEqual(winter.half, "polar_night")
+        self.assertEqual(winter.mark, -33.0)
+
+    def test_a_reading_carries_the_face(self) -> None:
+        unix = datetime(2026, 11, 22, 11, 18, tzinfo=timezone.utc).timestamp()
+        reading = read(unix, *STOCKHOLM)
+        self.assertEqual(reading.face, day_face(unix, *STOCKHOLM))
+        self.assertEqual(reading.face.half, "day")
+        self.assertGreater(reading.face.mark, 0.0)
+
+
+class BaseTests(unittest.TestCase):
+    def test_the_square_on_earth_is_four_right_angles(self) -> None:
+        self.assertEqual(RIGHT_ANGLE, 90)
+        self.assertEqual(EARTH_TURN, 360)
+
+    def test_sixty_six_is_the_gap_beside_binary_not_the_spoken_base(self) -> None:
+        self.assertIsNone(SPOKEN_BASE)
+        self.assertEqual(BINARY_WIDTH, 2**6)
+        self.assertEqual(BASES["beside"], 66)
+        self.assertEqual(WORLD_GAP, 2)
+        self.assertEqual(WORLD_GAP, 1 + 1)
+        self.assertEqual(SECTIONS * 2, 66)
+        lengths = month_lengths(365)
+        self.assertEqual(sum(1 for length in lengths if length == 33), 2)
+
+    def test_a_sentence_keeps_one_base(self) -> None:
+        self.assertEqual(parallel(("ten meters", "count")), (("ten meters", "count"),))
+        with self.assertRaises(MixedBases):
+            parallel(("ten meters", "count"), ("seconds", "time"))
 
 
 class EpochTests(unittest.TestCase):

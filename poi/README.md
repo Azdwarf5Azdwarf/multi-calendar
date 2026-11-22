@@ -8,6 +8,16 @@ The three sky clocks already kept in [poi-world](https://github.com/Azdwarf5Azdw
 - the sun walks about one degree a day (`360 / 365.2425`)
 - the stars drift one degree every 72 years
 
+## Three layers
+
+Three calendars, stacked.
+
+The circle underneath is one day. The sun goes around and comes back.
+
+The calendar in the middle is the year. The yellow bar grows and shrinks, and the months breathe with it. A phone that says 12:18 in winter and 12:18 in summer is pointing at two different places on this year.
+
+The calendar on top is the stars. They drift one degree every 72 years, the same amount every year, like ticks on a ruler. A full turn is 360 × 72 years, 25,920 years, so from a life this long the circle looks like a straight line.
+
 ## The year bars
 
 The year is two bars. Yellow is the time the sun is up. The rest is the sun down. Yellow widens through the climb and narrows after the high sun. The width is the day length at that place, so Stockholm's yellow bar swings harder than the bar at the equator.
@@ -74,9 +84,35 @@ The same label on 21 June 2026 is summer time on the phone. The sun is at 11:28,
 
 The geometric part of that gap, with the phone's zone and the summer hour set aside, is the equation of time: sun time minus the even clock at the longitude. In November the sun is 14 minutes ahead of that even clock. In June it is 2 minutes behind.
 
+## The face of the day
+
+Day and night carry the same number of sections. The number is 33, and it can be changed, as long as the two halves stay matched.
+
+The sun clears the horizon at +33. The count falls through the daylight and meets 0 as the sun passes the horizon again. The night walks the same 33 steps below zero: out to -33 in the middle of the night, and back to 0 at the next sunrise. Sunrise resets the count to +33.
+
+On 22 November 2026 at 12:18 in Stockholm the face reads +13, section 20 of 33. On 21 June 2026 at that same phone time it reads +17, section 16. Where the sun never sets, the count stays at +33. Where it never rises, the count stays at -33.
+
+## Bases, side by side
+
+A sentence holds one base. Ten meters, and then seconds, is two bases. The entities stop and ask which one you meant. The bases walk next to each other. They do not borrow from each other.
+
+| Base | What it counts |
+| --- | --- |
+| 10 | human counting |
+| 60 | the human clock, minutes and seconds |
+| 64 | the machine width beside this clock, 2⁶ |
+| 33 | sections of daylight, and sections of night |
+| 66 | two times 33, sitting two past 64 |
+
+That two is one plus one: their world and the human world. It is the gap. It is not the base they speak. The spoken base is unset.
+
+On Earth the full turn is a square. Four right angles meet in the middle, 4 × 90 = 360. Pi stays upstairs with the star circle. The day is cut by the horizon.
+
+This clock is fiction, kept at Memphis.
+
 ## A reading
 
-Stockholm, 22 November 2026, noon UTC (13:00 on a Stockholm phone): month 13, day 20 of 26, the end third. Yellow 0.299, sun down 0.701. The even clock at the longitude says 13:12 and the sun says 13:26, 8.5° up. The year opened 16 December 2025, the high sun was 21 June 2026, and evenings turned earlier on 23 June 2026.
+Stockholm, 22 November 2026, noon UTC (13:00 on a Stockholm phone): month 13, day 20 of 26, the end third. Yellow 0.299, sun down 0.701. The even clock at the longitude says 13:12 and the sun says 13:26, 8.5° up. The face is still in the daytime count. The year opened 16 December 2025, the high sun was 21 June 2026, and evenings turned earlier on 23 June 2026.
 
 ```
 python3 -m poi

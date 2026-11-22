@@ -51,6 +51,8 @@ def main(argv: list[str]) -> None:
         f"   gap {gap:+.0f} min   height {stand.altitude:.1f}°"
         f"   azimuth {stand.azimuth:.0f}°"
     )
+    face = reading.face
+    print(f"face   {face.mark:+.1f}   section {face.section:+d}/{face.sections}   {face.half}")
     print(f"hook   {reading.precession_degrees:.4f}° since the Unix epoch")
     print(f"year   {day(reading.beginning)}  →  {day(reading.high_sun)} high sun  →  {day(reading.earlier_sunset)} evenings turn  →  {day(reading.beginning + reading.year_days)}")
     print(f"days   {reading.year_days}   lengths {', '.join(str(n) for n in reading.lengths)}")

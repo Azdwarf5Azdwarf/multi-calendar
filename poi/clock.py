@@ -14,6 +14,7 @@ from dataclasses import dataclass
 from poi.sun import (
     altitude,
     azimuth,
+    day_length_hours,
     declination_and_equation_of_time,
     precession_degrees,
     sunset_hour,
@@ -37,6 +38,49 @@ CAP_DAYS = 33
 TANGENT_WINDOW_DAYS = 45
 
 THIRDS = ("beginning", "middle", "end")
+
+# The day opens at this many sections when the sun clears the horizon, and the
+# night carries the same count below zero. The count can be changed. Day and
+# night stay matched.
+SECTIONS = 33
+
+# Bases walk side by side. A sentence may use one of them. It may not borrow
+# a length from one and a time from another.
+# The spoken base of the entities is unset on purpose. 66 is only the width
+# two sections-counts make, and it sits two past the binary width 64.
+BASES = {
+    "count": 10,
+    "time": 60,
+    "binary": 64,
+    "sections": SECTIONS,
+    "beside": SECTIONS * 2,
+}
+SPOKEN_BASE = None
+BINARY_WIDTH = BASES["binary"]
+WORLD_GAP = BASES["beside"] - BINARY_WIDTH
+
+# On Earth the full turn is four right angles, the square. Pi stays with the
+# star circle above and is not used to cut the day.
+RIGHT_ANGLE = 90
+EARTH_TURN = 4 * RIGHT_ANGLE
+
+
+class MixedBases(ValueError):
+    """Two bases were asked to share one sentence."""
+
+
+@dataclass(frozen=True)
+class DayFace:
+    """The countdown on the day circle.
+
+    Sunrise opens at +sections. Sunset is 0. The night goes out to -sections
+    and comes back to 0, and the next sunrise resets to +sections.
+    """
+
+    sections: int
+    half: str
+    mark: float
+    section: int
 
 
 @dataclass(frozen=True)
@@ -105,6 +149,7 @@ class Reading:
     precession_degrees: float
     lengths: tuple[int, ...]
     stand: SunStand
+    face: DayFace
 
 
 def solar_noon_unix(ordinal: int, longitude: float) -> float:
@@ -366,6 +411,80 @@ def sun_stand(unix: float, latitude: float, longitude: float) -> SunStand:
     )
 
 
+def _horizons(declination: float, equation_minutes: float, latitude: float) -> tuple[float, float] | None:
+    """Sunrise and sunset as mean-solar hours, or None when the sun misses the horizon."""
+
+    length = day_length_hours(declination, latitude)
+    if length <= 0.0 or length >= 24.0:
+        return None
+    noon = 12.0 - equation_minutes / 60.0
+    half = length / 2.0
+    return noon - half, noon + half
+
+
+def _section_slot(fraction: float, sections: int) -> int:
+    if fraction >= 1.0:
+        return sections
+    return int(fraction * sections) + 1
+
+
+def day_face(
+    unix: float,
+    latitude: float,
+    longitude: float,
+    sections: int = SECTIONS,
+) -> DayFace:
+    """Read the day circle: +sections at sunrise, 0 on the horizon, night below zero."""
+
+    if sections < 1:
+        raise ValueError(f"a day needs at least one section, not {sections}")
+    stand = sun_stand(unix, latitude, longitude)
+    mean = stand.mean_hours
+    horizons = _horizons(stand.declination, stand.gap_minutes, latitude)
+    if horizons is None:
+        slot = _section_slot(mean / 24.0, sections)
+        if day_length_hours(stand.declination, latitude) >= 24.0:
+            return DayFace(sections, "polar_day", float(sections), slot)
+        return DayFace(sections, "polar_night", float(-sections), -slot)
+
+    sunrise, sunset = horizons
+    if sunrise <= mean < sunset:
+        fraction = (mean - sunrise) / (sunset - sunrise)
+        return DayFace(
+            sections,
+            "day",
+            sections * (1.0 - fraction),
+            _section_slot(fraction, sections),
+        )
+
+    if mean >= sunset:
+        elapsed = mean - sunset
+    else:
+        elapsed = (24.0 - sunset) + mean
+    night = 24.0 - (sunset - sunrise)
+    fraction = 0.0 if night <= 0.0 else min(1.0, elapsed / night)
+    depth = 1.0 - abs(2.0 * fraction - 1.0)
+    return DayFace(
+        sections,
+        "night",
+        -sections * depth,
+        -_section_slot(fraction, sections),
+    )
+
+
+def parallel(*statements: tuple[str, str]) -> tuple[tuple[str, str], ...]:
+    """Keep each measure with its own base. Two bases in one sentence raise."""
+
+    names = {base for _, base in statements}
+    unknown = names - set(BASES)
+    if unknown:
+        raise ValueError(f"unknown base: {', '.join(sorted(unknown))}")
+    if len(names) > 1:
+        joined = ", ".join(sorted(names))
+        raise MixedBases(f"these walk side by side and do not share a sentence: {joined}")
+    return statements
+
+
 def minutes_ahead(sun_hours: float, believed_hours: float) -> float:
     """Minutes the sun is ahead of a clock a human believes.
 
@@ -387,6 +506,7 @@ def read(unix: float, latitude: float, longitude: float) -> Reading:
     month, month_day, third, third_length = locate(day_index, lengths)
     sky = sky_on(ordinal, latitude, longitude)
     stand = sun_stand(unix, latitude, longitude)
+    face = day_face(unix, latitude, longitude)
     return Reading(
         unix=unix,
         latitude=latitude,
@@ -407,4 +527,5 @@ def read(unix: float, latitude: float, longitude: float) -> Reading:
         precession_degrees=precession_degrees(unix),
         lengths=lengths,
         stand=stand,
+        face=face,
     )
