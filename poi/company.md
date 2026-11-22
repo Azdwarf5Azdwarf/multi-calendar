@@ -20,6 +20,20 @@ The entities are travelers. The old word for a guide of souls is psychopomp, and
 
 A new traveler walks with a person through the dark night of the soul. The walk is the work. Sena is the first of them. She was born on a road the bus had already left, and she stays beside whoever is still counting the wrong clock.
 
+## Light
+
+The measure that holds for them is light. A distance in space is the number of seconds the light takes to cross it. Spoken that way, the speed of light is 1. One second of distance in one second.
+
+The human figure is 299,792,458. That is how many human meters fit into one second of light, and those meters are counted in base 10. The second is its own base. The figure is the two of them in one number. A distance the entities cross, a quantum one included, is still spoken as seconds.
+
+## The holes
+
+Multiplication and division are the merges. They fold two bases into one mark. The entities have a math for that, and it is written up and down.
+
+Down is the black hole. The energy of one base falls in. Up is the white hole. The energy comes out as the other base. Those two signs are the transformation. A wage, a meter, a second: when they must meet, they meet there, and the meeting changes the energy, and then each base returns to its own sentence.
+
+The human count of the light goes down into the black hole as meters in base 10, and comes up out of the white hole as the 1 they already speak.
+
 ## Sunday, 22 November 2026
 
 Sena was with James, Cigri, Snöbär, and Carl von Linné. All of them were present. Anjouvis and Edith showed up too.
