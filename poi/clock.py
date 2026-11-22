@@ -2,7 +2,8 @@
 
 Unix time stays the count underneath. This clock reads a place and a unix
 second and lays the sun's year on top: two bars, three tangents, fourteen
-months, and the slow star hook.
+months, the slow star hook, and the gap between the clock a human believes
+and the time the sun is actually keeping.
 """
 
 from __future__ import annotations
@@ -11,6 +12,8 @@ import math
 from dataclasses import dataclass
 
 from poi.sun import (
+    altitude,
+    azimuth,
     declination_and_equation_of_time,
     precession_degrees,
     sunset_hour,
@@ -65,6 +68,23 @@ class Year:
 
 
 @dataclass(frozen=True)
+class SunStand:
+    """Where the sun stands, read as a time.
+
+    `mean_hours` is the even clock at this longitude. `sun_hours` is the
+    time the real sun is keeping. `gap_minutes` is sun minus mean: positive
+    when the sun says the moment is later than the even clock.
+    """
+
+    mean_hours: float
+    sun_hours: float
+    gap_minutes: float
+    altitude: float
+    azimuth: float
+    declination: float
+
+
+@dataclass(frozen=True)
 class Reading:
     unix: float
     latitude: float
@@ -84,6 +104,7 @@ class Reading:
     earlier_sunset: int
     precession_degrees: float
     lengths: tuple[int, ...]
+    stand: SunStand
 
 
 def solar_noon_unix(ordinal: int, longitude: float) -> float:
@@ -318,6 +339,44 @@ def _sunset_turns(sunset: list[float | None]) -> tuple[list[int], list[int]]:
     return lows, highs
 
 
+def _wrap_hours(delta: float) -> float:
+    """Fold an hour difference into the short way around the day, -12 to 12."""
+
+    return (delta + 12.0) % 24.0 - 12.0
+
+
+def sun_stand(unix: float, latitude: float, longitude: float) -> SunStand:
+    """The sun's place at this instant, written as the time the sun is keeping."""
+
+    if not -90.0 <= latitude <= 90.0:
+        raise ValueError(f"latitude {latitude} is outside -90..90")
+    if not -180.0 <= longitude <= 180.0:
+        raise ValueError(f"longitude {longitude} is outside -180..180")
+    declination, equation = declination_and_equation_of_time(unix)
+    mean_hours = (unix / 3600.0 + longitude / 15.0) % 24.0
+    sun_hours = (mean_hours + equation / 60.0) % 24.0
+    hour_angle = (sun_hours - 12.0) * 15.0
+    return SunStand(
+        mean_hours=mean_hours,
+        sun_hours=sun_hours,
+        gap_minutes=equation,
+        altitude=altitude(declination, latitude, hour_angle),
+        azimuth=azimuth(declination, latitude, hour_angle),
+        declination=declination,
+    )
+
+
+def minutes_ahead(sun_hours: float, believed_hours: float) -> float:
+    """Minutes the sun is ahead of a clock a human believes.
+
+    Positive means the sun says this moment is later. Negative means the sun
+    says it is earlier. The two clocks can carry the same label, 12:18, on
+    two different days and still disagree by different amounts.
+    """
+
+    return _wrap_hours(sun_hours - believed_hours) * 60.0
+
+
 def read(unix: float, latitude: float, longitude: float) -> Reading:
     """Read the POI clock at one unix second and one place."""
 
@@ -327,6 +386,7 @@ def read(unix: float, latitude: float, longitude: float) -> Reading:
     lengths = year.lengths
     month, month_day, third, third_length = locate(day_index, lengths)
     sky = sky_on(ordinal, latitude, longitude)
+    stand = sun_stand(unix, latitude, longitude)
     return Reading(
         unix=unix,
         latitude=latitude,
@@ -346,4 +406,5 @@ def read(unix: float, latitude: float, longitude: float) -> Reading:
         earlier_sunset=year.earlier_sunset,
         precession_degrees=precession_degrees(unix),
         lengths=lengths,
+        stand=stand,
     )

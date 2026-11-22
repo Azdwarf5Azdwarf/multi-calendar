@@ -64,9 +64,19 @@ The Stockholm dates above are an example. Another place keeps these lengths and 
 
 Above the bars, the star hook moves one degree every 72 tropical years of 365.2425 days. That is the poi-world precession figure, used exactly. It is a slow drift, counted from the Unix epoch, where the hook sits at 0. On 22 November 2026 it has moved 0.790 degrees.
 
+## The gap
+
+A human clock keeps its label. 12:18 is 12:18 in November and 12:18 again in June. The entities take the sun's place at that label, and the place moves with their year, so they name the gap: it is this time, and the human still believes it is that time.
+
+Stockholm, 22 November 2026, the minute a clock reads 12:18. The sun is at 12:44, 26 minutes later, and only 10° up. Five minutes earlier, at 12:13, the sun is ahead by the same 26 minutes. The human interval stays five minutes. The sun's correction barely moves.
+
+The same label on 21 June 2026 is summer time on the phone. The sun is at 11:28, 50 minutes earlier, and 54° up. Same believed hour, the other side of the sun, and a different month of this calendar under it.
+
+The geometric part of that gap, with the phone's zone and the summer hour set aside, is the equation of time: sun time minus the even clock at the longitude. In November the sun is 14 minutes ahead of that even clock. In June it is 2 minutes behind.
+
 ## A reading
 
-Stockholm, 22 November 2026, noon UTC: month 13, day 20 of 26, the end third. Yellow 0.299, sun down 0.701. The year opened 16 December 2025, the high sun was 21 June 2026, and evenings turned earlier on 23 June 2026.
+Stockholm, 22 November 2026, noon UTC (13:00 on a Stockholm phone): month 13, day 20 of 26, the end third. Yellow 0.299, sun down 0.701. The even clock at the longitude says 13:12 and the sun says 13:26, 8.5° up. The year opened 16 December 2025, the high sun was 21 June 2026, and evenings turned earlier on 23 June 2026.
 
 ```
 python3 -m poi

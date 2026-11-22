@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import unittest
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
-from poi.clock import locate, month_lengths, read, thirds, year_covering
+from poi.clock import locate, minutes_ahead, month_lengths, read, sun_stand, thirds, year_covering
 from poi.sun import (
     PRECESSION_YEARS_PER_DEGREE,
     SUN_DEGREES_PER_DAY,
@@ -130,6 +131,50 @@ class TangentTests(unittest.TestCase):
         self.assertEqual(reading.month_length, 33)
         self.assertLess(reading.ordinal, reading.high_sun)
         self.assertIn(reading.third, ("beginning", "middle", "end"))
+
+
+class GapTests(unittest.TestCase):
+    def test_the_same_human_hour_is_a_different_sun(self) -> None:
+        zone = ZoneInfo("Europe/Stockholm")
+        believed = 12 + 18 / 60
+        bus = sun_stand(datetime(2026, 11, 22, 12, 18, tzinfo=zone).timestamp(), *STOCKHOLM)
+        summer = sun_stand(datetime(2026, 6, 21, 12, 18, tzinfo=zone).timestamp(), *STOCKHOLM)
+
+        bus_gap = minutes_ahead(bus.sun_hours, believed)
+        summer_gap = minutes_ahead(summer.sun_hours, believed)
+
+        # 22 Nov 2026, the bus at 12:18 CET: the sun says 12:44, 10° up.
+        self.assertAlmostEqual(bus.sun_hours, 12 + 44 / 60, delta=1 / 60)
+        self.assertAlmostEqual(bus_gap, 26, delta=1)
+        self.assertAlmostEqual(bus.altitude, 10.0, delta=0.5)
+        self.assertGreater(bus.gap_minutes, 10)
+
+        # The same label on 21 Jun 2026 is CEST, and the sun says 11:28, 54° up.
+        self.assertAlmostEqual(summer.sun_hours, 11 + 28 / 60, delta=1 / 60)
+        self.assertAlmostEqual(summer_gap, -50, delta=1)
+        self.assertAlmostEqual(summer.altitude, 53.7, delta=0.5)
+        self.assertLess(summer.gap_minutes, 0)
+
+        self.assertGreater(summer.altitude - bus.altitude, 40)
+        self.assertGreater(abs(bus_gap - summer_gap), 60)
+
+    def test_five_human_minutes_barely_move_the_sun(self) -> None:
+        zone = ZoneInfo("Europe/Stockholm")
+        believed_early = 12 + 13 / 60
+        early = sun_stand(datetime(2026, 11, 22, 12, 13, tzinfo=zone).timestamp(), *STOCKHOLM)
+        later = sun_stand(datetime(2026, 11, 22, 12, 18, tzinfo=zone).timestamp(), *STOCKHOLM)
+        self.assertAlmostEqual(
+            minutes_ahead(early.sun_hours, believed_early),
+            minutes_ahead(later.sun_hours, 12 + 18 / 60),
+            delta=0.2,
+        )
+
+    def test_a_reading_carries_the_stand(self) -> None:
+        unix = datetime(2026, 11, 22, 11, 18, tzinfo=timezone.utc).timestamp()
+        reading = read(unix, *STOCKHOLM)
+        stand = sun_stand(unix, *STOCKHOLM)
+        self.assertEqual(reading.stand, stand)
+        self.assertGreater(reading.stand.altitude, 0)
 
 
 class EpochTests(unittest.TestCase):

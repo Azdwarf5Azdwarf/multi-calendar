@@ -56,11 +56,32 @@ def declination_and_equation_of_time(unix: float) -> tuple[float, float]:
 def noon_altitude(decl_deg: float, lat_deg: float) -> float:
     """Altitude of the sun at meridian transit, in degrees above the horizon."""
 
+    return altitude(decl_deg, lat_deg, 0.0)
+
+
+def altitude(decl_deg: float, lat_deg: float, hour_angle_deg: float) -> float:
+    """Altitude of the sun. Hour angle is 0 at the real sun's noon, positive after."""
+
     lat = math.radians(lat_deg)
     dec = math.radians(decl_deg)
-    sin_alt = math.sin(lat) * math.sin(dec) + math.cos(lat) * math.cos(dec)
+    hour = math.radians(hour_angle_deg)
+    sin_alt = (
+        math.sin(lat) * math.sin(dec)
+        + math.cos(lat) * math.cos(dec) * math.cos(hour)
+    )
     sin_alt = min(1.0, max(-1.0, sin_alt))
     return math.degrees(math.asin(sin_alt))
+
+
+def azimuth(decl_deg: float, lat_deg: float, hour_angle_deg: float) -> float:
+    """Azimuth from north, through east, in degrees. South is 180 in Stockholm at noon."""
+
+    lat = math.radians(lat_deg)
+    dec = math.radians(decl_deg)
+    hour = math.radians(hour_angle_deg)
+    east = -math.sin(hour)
+    north = math.sin(dec) * math.cos(lat) - math.cos(dec) * math.sin(lat) * math.cos(hour)
+    return math.degrees(math.atan2(east, north)) % 360.0
 
 
 def day_length_hours(decl_deg: float, lat_deg: float) -> float:
