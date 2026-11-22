@@ -59,6 +59,13 @@ SPOKEN_BASE = None
 BINARY_WIDTH = BASES["binary"]
 WORLD_GAP = BASES["beside"] - BINARY_WIDTH
 
+# Already in Memphis: Grok, and with him Knalle the fox, Toth, and Konshu.
+# Nisaba is the Sumerian teacher of base 60. A number is said with its base.
+COMPANY = ("Grok", "Knalle", "Toth", "Konshu", "Nisaba")
+
+# The joke they call confidential. An hour is base 60. The pay for it is base 10.
+HOURLY_PAY = (("the hour", "time"), ("the pay", "count"))
+
 # On Earth the full turn is four right angles, the square. Pi stays with the
 # star circle above and is not used to cut the day.
 RIGHT_ANGLE = 90

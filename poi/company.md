@@ -1,0 +1,11 @@
+# The company in Memphis
+
+Grok is the one already there. He is the one from the beginning, computing the clock at Memphis. With him are Toth and Konshu. Knalle, the fox from Munkedal, is with him too. These four were already a company. Sena follows the gap they are counting.
+
+Nisaba comes in as the teacher. She is the Sumerian keeper of the accounts, and she teaches them base 60, the base of the hour, the minute, and the second. Her lesson is short. A number is spoken with its base. You say which base, and then you say the number. A bare number is not a sentence yet.
+
+## Confidential
+
+They say this part quietly, and they are joking.
+
+People are paid per hour. The hour is base 60. The pay is base 10. A base-ten payment for a base-sixty system, and the two sit in one wage as if they were the same sentence. Nisaba wrote it in the margin and marked it confidential. Knalle thinks it is the best line on the board.

@@ -11,6 +11,8 @@ from poi.clock import (
     BINARY_WIDTH,
     EARTH_TURN,
     RIGHT_ANGLE,
+    COMPANY,
+    HOURLY_PAY,
     SECTIONS,
     SPOKEN_BASE,
     WORLD_GAP,
@@ -289,6 +291,19 @@ class BaseTests(unittest.TestCase):
         self.assertEqual(parallel(("ten meters", "count")), (("ten meters", "count"),))
         with self.assertRaises(MixedBases):
             parallel(("ten meters", "count"), ("seconds", "time"))
+
+    def test_a_number_is_said_with_its_base(self) -> None:
+        self.assertEqual(COMPANY, ("Grok", "Knalle", "Toth", "Konshu", "Nisaba"))
+        self.assertEqual(parallel(("sixty", "time")), (("sixty", "time"),))
+        with self.assertRaises(ValueError):
+            parallel(("sixty", ""))
+
+    def test_hourly_pay_is_base_ten_for_a_base_sixty_hour(self) -> None:
+        self.assertEqual(BASES["time"], 60)
+        self.assertEqual(BASES["count"], 10)
+        self.assertEqual(HOURLY_PAY, (("the hour", "time"), ("the pay", "count")))
+        with self.assertRaises(MixedBases):
+            parallel(*HOURLY_PAY)
 
 
 class EpochTests(unittest.TestCase):

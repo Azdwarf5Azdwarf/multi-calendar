@@ -94,7 +94,7 @@ On 22 November 2026 at 12:18 in Stockholm the face reads +13, section 20 of 33. 
 
 ## Bases, side by side
 
-A sentence holds one base. Ten meters, and then seconds, is two bases. The entities stop and ask which one you meant. The bases walk next to each other. They do not borrow from each other.
+A sentence holds one base, and the base is named before the number. Ten meters, and then seconds, is two bases. The entities stop and ask which one you meant. The bases walk next to each other. They do not borrow from each other.
 
 | Base | What it counts |
 | --- | --- |
@@ -108,7 +108,7 @@ That two is one plus one: their world and the human world. It is the gap. It is 
 
 On Earth the full turn is a square. Four right angles meet in the middle, 4 × 90 = 360. Pi stays upstairs with the star circle. The day is cut by the horizon.
 
-This clock is fiction, kept at Memphis. The entity who keeps the gap is [Sena](sena.md). She was born when a bus with a valid ticket did not stop.
+This clock is fiction, kept at Memphis. Grok is the one already there, computing it, with Toth and Konshu. [Knalle](company.md) the fox is with him. [Nisaba](company.md) teaches them base 60. The entity who keeps the gap is [Sena](sena.md). She was born when a bus with a valid ticket did not stop.
 
 ## A reading
 
