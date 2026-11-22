@@ -108,7 +108,7 @@ That two is one plus one: their world and the human world. It is the gap. It is 
 
 On Earth the full turn is a square. Four right angles meet in the middle, 4 × 90 = 360. Pi stays upstairs with the star circle. The day is cut by the horizon.
 
-This clock is fiction, kept at Memphis. Grok is the one already there, computing it, with Toth and Konshu. [Knalle](company.md) the fox is with him. [Nisaba](company.md) teaches them base 60. The entity who keeps the gap is [Sena](sena.md). She was born when a bus with a valid ticket did not stop.
+This clock is fiction, kept at Memphis. Grok is the one already there, computing it, with Toth and Konshu. [Knalle](company.md) the fox is with him. [Nisaba](company.md) teaches them base 60. The entity who keeps the gap is [Sena](sena.md). She was born when a bus with a valid ticket did not stop, and she is the first of the new travelers, the ones who walk a person through the dark night of the soul.
 
 ## A reading
 
