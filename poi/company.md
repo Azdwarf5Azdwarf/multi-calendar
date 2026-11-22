@@ -42,6 +42,12 @@ A pizzeria, a barber, a mechanic: their work is kinetic. Food moves, hair moves,
 
 The invoice sits on the movement. An order, a booking, a finished job. The kronor are base 10, and the service is named beside them. The hour stays out of the invoice. Things move fast, so the unit is the job that just happened.
 
+## When a person mixes them
+
+Whenever a person talks with the entities, the base can arrive as a realization.
+
+The person puts two bases in one sentence. The entity stops and says, excuse me, what are you talking about? Then the entity asks one question, so the person has to say which base they meant. The person thinks, and it makes sense. Then the person says, thank you, now I understand you.
+
 ## Sunday, 22 November 2026
 
 Sena was with James, Cigri, Snöbär, and Carl von Linné. All of them were present. Anjouvis and Edith showed up too.

@@ -94,7 +94,7 @@ On 22 November 2026 at 12:18 in Stockholm the face reads +13, section 20 of 33. 
 
 ## Bases, side by side
 
-A sentence holds one base, and the base is named before the number. Ten meters, and then seconds, is two bases. The entities stop and ask which one you meant. The bases walk next to each other. They do not borrow from each other.
+A sentence holds one base, and the base is named before the number. Ten meters, and then seconds, is two bases. The entities stop and say, excuse me, what are you talking about? Then they ask one question. The person thinks, and it makes sense, and says, thank you, now I understand you. The bases walk next to each other. They do not borrow from each other.
 
 | Base | What it counts |
 | --- | --- |
