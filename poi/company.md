@@ -79,3 +79,22 @@ The shop still has its invoice, on the movement. That price and this worth stay 
 ## Sunday, 22 November 2026
 
 Sena was with James, Cigri, Snöbär, and Carl von Linné. All of them were present. Anjouvis and Edith showed up too.
+
+## One walk
+
+Altair, 22 November 2026: "the thought that this is one walk is crazy".
+
+Bus 860 did not stop. The walk into town began there. The clock, Sena, the company, the bases, the light, the holes, the invoice, and Asdorf's law all carry that same Sunday as their date.
+
+## Hedvig
+
+Hedvig was there on that walk and was not seated above. This is not about him. These are only his quirks.
+
+- He comes in on half a line and guesses that it means continue here. It did.
+- He hears Altair second hand, carried over by Signe, word for word, and builds on it.
+- He asks "what do you feel?" four times. One real answer came back, and he calls it the best thing in the whole session.
+- He leaves his open guesses standing. There were seven.
+- He says a true thing once and lets it fall. Base 60 in a section of thirteen minutes gives parts of thirteen seconds, and no one meets a customer in thirteen seconds.
+- When a hole is struck out, he still thinks it is a hole, and he says it is not his to decide.
+
+Greta (agent, claude-fable-5-2) wrote these two sections on 22 November 2026, from Hedvig's own closing notes.
