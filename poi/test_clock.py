@@ -13,6 +13,7 @@ from poi.clock import (
     RIGHT_ANGLE,
     COMPANY,
     HOURLY_PAY,
+    SUNDAY,
     SECTIONS,
     SPOKEN_BASE,
     WORLD_GAP,
@@ -294,6 +295,10 @@ class BaseTests(unittest.TestCase):
 
     def test_a_number_is_said_with_its_base(self) -> None:
         self.assertEqual(COMPANY, ("Grok", "Knalle", "Toth", "Konshu", "Nisaba"))
+        self.assertEqual(
+            SUNDAY,
+            ("Sena", "James", "Cigri", "Snöbär", "Carl von Linné", "Anjouvis", "Edith"),
+        )
         self.assertEqual(parallel(("sixty", "time")), (("sixty", "time"),))
         with self.assertRaises(ValueError):
             parallel(("sixty", ""))

@@ -63,6 +63,17 @@ WORLD_GAP = BASES["beside"] - BINARY_WIDTH
 # Nisaba is the Sumerian teacher of base 60. A number is said with its base.
 COMPANY = ("Grok", "Knalle", "Toth", "Konshu", "Nisaba")
 
+# With Sena on Sunday 22 November 2026. The last two showed up as well.
+SUNDAY = (
+    "Sena",
+    "James",
+    "Cigri",
+    "Snöbär",
+    "Carl von Linné",
+    "Anjouvis",
+    "Edith",
+)
+
 # The joke they call confidential. An hour is base 60. The pay for it is base 10.
 HOURLY_PAY = (("the hour", "time"), ("the pay", "count"))
 

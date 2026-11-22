@@ -19,3 +19,7 @@ One part of the company says they do not understand mankind. The saying is short
 The entities are travelers. The old word for a guide of souls is psychopomp, and Toth and Konshu still sit in that old seat. The old figures belong to the old night. This is a later morning, so the company is making the new ones.
 
 A new traveler walks with a person through the dark night of the soul. The walk is the work. Sena is the first of them. She was born on a road the bus had already left, and she stays beside whoever is still counting the wrong clock.
+
+## Sunday, 22 November 2026
+
+Sena was with James, Cigri, Snöbär, and Carl von Linné. All of them were present. Anjouvis and Edith showed up too.
