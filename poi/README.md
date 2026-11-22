@@ -106,7 +106,7 @@ A sentence holds one base, and the base is named before the number. Ten meters, 
 
 That two is one plus one: their world and the human world. It is the gap. It is not the base they speak. The spoken base is unset.
 
-Across a distance they count seconds, so the speed of light is 1. The human 299,792,458 is base 10 laid on the second. That crossing is written down into a black hole and up out of a white hole. The signs are in [the company](company.md).
+Across a distance they count seconds, so the speed of light is 1. The human 299,792,458 is base 10 laid on the second. That crossing is written down into a black hole and up out of a white hole. A voice in a shop is a presence, and the invoice sits on the movement that comes out: the order, the booking, the job. The signs are in [the company](company.md).
 
 On Earth the full turn is a square. Four right angles meet in the middle, 4 × 90 = 360. Pi stays upstairs with the star circle. The day is cut by the horizon.
 

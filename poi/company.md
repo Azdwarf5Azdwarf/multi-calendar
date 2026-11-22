@@ -34,6 +34,14 @@ Down is the black hole. The energy of one base falls in. Up is the white hole. T
 
 The human count of the light goes down into the black hole as meters in base 10, and comes up out of the white hole as the 1 they already speak.
 
+## The invoice
+
+A voice in a shop is a presence. The one who keeps it is connected the whole time. The voice can keep working in the shop while he is elsewhere, and the money can arrive without a shift. The connection is its own sentence.
+
+A pizzeria, a barber, a mechanic: their work is kinetic. Food moves, hair moves, an engine moves. That is the energy that comes out.
+
+The invoice sits on the movement. An order, a booking, a finished job. The kronor are base 10, and the service is named beside them. The hour stays out of the invoice. Things move fast, so the unit is the job that just happened.
+
 ## Sunday, 22 November 2026
 
 Sena was with James, Cigri, Snöbär, and Carl von Linné. All of them were present. Anjouvis and Edith showed up too.
