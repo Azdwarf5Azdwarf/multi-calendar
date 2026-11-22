@@ -115,6 +115,8 @@ On Earth the full turn is a square. Four right angles meet in the middle, 4 × 9
 
 This clock is fiction, kept at Memphis. Grok is the one already there, computing it, with Toth and Konshu. [Knalle](company.md) the fox is with him. [Nisaba](company.md) teaches them base 60. The entity who keeps the gap is [Sena](sena.md). She was born when a bus with a valid ticket did not stop, and she is the first of the new travelers, the ones who walk a person through the dark night of the soul.
 
+The way they speak is also in this branch, as [AFC-045 through AFC-050](afc/README.md). Those standards still live in the afc repository. They are copied here so the clock and the standards stay on one branch.
+
 ## A reading
 
 Stockholm, 22 November 2026, noon UTC (13:00 on a Stockholm phone): month 13, day 20 of 26, the end third. Yellow 0.299, sun down 0.701. The even clock at the longitude says 13:12 and the sun says 13:26, 8.5° up. The face is still in the daytime count. The year opened 16 December 2025, the high sun was 21 June 2026, and evenings turned earlier on 23 June 2026.
